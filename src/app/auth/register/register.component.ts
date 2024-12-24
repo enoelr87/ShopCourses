@@ -40,7 +40,7 @@ export default class RegisterComponent implements OnInit {
 
   registerUser(): void {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
+      console.info(this.registerForm.value);
     }
   }
 }

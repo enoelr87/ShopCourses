@@ -52,7 +52,7 @@ export default class LoginComponent implements OnInit {
 
   loginUser(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
+      console.info(this.loginForm.value);
     }
   }
 }

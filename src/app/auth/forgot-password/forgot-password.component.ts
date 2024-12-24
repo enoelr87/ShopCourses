@@ -34,6 +34,6 @@ export default class ForgotPasswordComponent implements OnInit {
   }
 
   sendUserCode(): void {
-    console.log(this.forgotPasswordForm.value);
+    console.info(this.forgotPasswordForm.value);
   }
 }
