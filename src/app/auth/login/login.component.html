@@ -1,0 +1,29 @@
+<div class="login-form">
+	<div class="form-data text-xl">
+		<form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="loginUser()">
+			<div class="username mb-4">
+				<p-floatlabel>
+					<input id="username" pInputText formControlName="username" class="form-control w-full"/>
+					<label for="username">Usuário</label>
+				</p-floatlabel>
+			</div>
+			<div class="password mb-4">
+				<p-floatlabel>
+					<input id="password" pPassword formControlName="password" [feedback]="false" [showPassword]="false" class="form-control w-full"/>
+					<label for="password">Senha</label>
+				</p-floatlabel>
+			</div>
+			<div class="flex align-items-center justify-content-end mb-6">
+				<a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer" [routerLink]="['/auth/forgot-password']">Esqueci minha senha</a>
+			</div>
+			<div class="login-captcha flex justify-content-center align-items-center mb-4">
+				<re-captcha (resolved)="onCaptchaResolved($event)" siteKey="{{apiKey}}"></re-captcha>
+			</div>
+			<button pButton pRipple label="Entrar" type="submit" [disabled]="!loginForm.valid || captcha === 'INVALID'" icon="pi pi-user" class="w-full bg-blue-500 border-blue-600 text-white hover:bg-blue-600"></button>
+			<div class="flex align-items-center justify-content-center mt-3 flex-column gap-2">
+				<span class="text-600 text-gray-500 font-medium line-height-3">Não tem uma conta?</span>
+				<a class="text-900 font-medium no-underline text-blue-500 cursor-pointer" [routerLink]="['/auth/register']" >Crie uma agora mesmo!</a>
+			</div>
+		</form>
+	</div>
+</div>

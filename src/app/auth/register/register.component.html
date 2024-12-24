@@ -1,0 +1,48 @@
+<div class="register-form">
+	<div class="form-data text-xl">
+        <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="registerUser()">
+            <div class="name mb-4">
+                <p-floatlabel>
+                    <input id="name" pInputText formControlName="name" class="w-full"/>
+                    <label for="name">Nome</label>
+                </p-floatlabel>
+            </div>
+            <div class="username mb-4">
+                <p-floatlabel>
+                    <input id="username" pInputText formControlName="username" class="w-full"/>
+                    <label for="username">Usuário</label>
+                </p-floatlabel>
+            </div>
+            <div class="password mb-4 w-full">
+                <p-floatlabel class="w-full">
+                    <p-password formControlName="password" autocomplete="off" [toggleMask]="true" [inputStyle]="{ width: '100%' }"
+                    [style]="{ width: '100%' }" class="block w-full mt-1 placeholder-gray-400 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-600 focus:ring-opacity-50">
+                        <ng-template #header>
+                            <div class="font-semibold text-xm mb-4">Pick a password</div>
+                        </ng-template>
+                        <ng-template #footer>
+                            <ul class="pl-2 ml-2 my-0 leading-normal">
+                                <li>At least one lowercase</li>
+                                <li>At least one uppercase</li>
+                                <li>At least one numeric</li>
+                                <li>Minimum 8 characters</li>
+                            </ul>
+                        </ng-template>
+                    </p-password>
+                    <label for="password">Senha</label>
+                </p-floatlabel>
+            </div>
+            <div class="confirm-password mb-4">
+                <p-floatlabel>
+                    <input id="confirm-password" pPassword formControlName="confirmPassword" [feedback]="false" [showPassword]="false" class="w-full"/>
+                    <label for="confirm-password">Confirmar Senha</label>
+                </p-floatlabel>
+            </div>
+            <button pButton pRipple label="Cadastrar" type="submit" [disabled]="!registerForm.valid" icon="pi pi-user" class="w-full bg-blue-500 border-blue-600 text-white hover:bg-blue-600"></button>
+            <div class="flex align-items-center justify-content-center mt-3 flex-column gap-2">
+                <span class="text-600 text-gray-500 font-medium line-height-3">Já tem uma conta?</span>
+                <a class="text-900 font-medium no-underline ml-2 text-blue-500 cursor-pointer" [routerLink]="['/auth/login']" >Fazer login!</a>
+            </div>
+        </form>
+	</div>
+</div>
