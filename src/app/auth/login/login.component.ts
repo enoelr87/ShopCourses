@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -13,6 +13,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../core/services/auth.service';
+import { LoginUserDto } from '../../core/models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -31,10 +33,10 @@ import { environment } from '../../../environments/environment';
   styleUrl: './login.component.scss',
 })
 export default class LoginComponent implements OnInit {
+  authService = inject(AuthService);
+
   apiKey: string = environment.apiKeyCaptchaV2;
-
   loginForm!: FormGroup;
-
   captcha = 'INVALID';
 
   ngOnInit(): void {
@@ -53,6 +55,13 @@ export default class LoginComponent implements OnInit {
   loginUser(): void {
     if (this.loginForm.valid) {
       console.info(this.loginForm.value);
+      const user: LoginUserDto = {
+        username: this.loginForm.value.username,
+        password: this.loginForm.value.password,
+      };
+      this.authService.login(user).subscribe((data) => {
+        console.info(data);
+      });
     }
   }
 }

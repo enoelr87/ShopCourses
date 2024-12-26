@@ -1,0 +1,11 @@
+<div class="blocked" [ngClass]="{'hidden': !spinnerService.isVisible()}" styleClass="spinner">
+	<span class="loader">
+	</span>
+	<div class="logo absolute">
+		@if (keyLogo) {
+			<img class="logo" src="data:image/png;base64,{{logo}}" alt="">
+		} @else {
+			<img src="assets/images/logo-klever-white-small.png" class="logo" height="72" width="42" alt="">
+		}
+	</div>
+</div>
