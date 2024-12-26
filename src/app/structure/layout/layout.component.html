@@ -1,0 +1,24 @@
+<div class="layout-wrapper">
+	<div id="layout-sidebar-menu" class="layout-sidebar">
+		<app-menu></app-menu>
+	</div>
+	<section class="layout-container">
+		<div class="layout-header">
+			<div class="menu-header">
+				<div class="tree-menu">
+					<input type="checkbox" id="checkbox-tree-menu"/>
+					<label class="label-tree-menu" for="checkbox-tree-menu">
+						<div class="bar"></div>
+						<div class="bar"></div>
+						<div class="bar"></div>
+					</label>
+				</div>
+				<div class="title"></div>
+			</div>
+			<app-header></app-header>
+		</div>
+		<div class="layout-main overflow-hidden">
+			<router-outlet></router-outlet>
+		</div>
+	</section>
+</div>

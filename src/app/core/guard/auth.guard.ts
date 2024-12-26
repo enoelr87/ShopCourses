@@ -1,12 +1,13 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
+  const sessionService = inject(SessionService);
   const router = inject(Router);
 
-  console.info('authGuard', route, state);
-  if (!localStorage.getItem('accessToken')) {
-    router.navigate(['/forbidden']).then();
+  if (!sessionService.getIsUserLoggedIn()) {
+    router.navigate(['/auth']).then();
     return false;
   }
   return true;

@@ -15,6 +15,7 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../core/services/auth.service';
 import { LoginUserDto } from '../../core/models/user.model';
+import { SessionService } from '../../core/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +35,7 @@ import { LoginUserDto } from '../../core/models/user.model';
 })
 export default class LoginComponent implements OnInit {
   private authService = inject(AuthService);
+  private sessionService = inject(SessionService);
   private router = inject(Router);
 
   apiKey: string = environment.apiKeyCaptchaV2;
@@ -61,8 +63,9 @@ export default class LoginComponent implements OnInit {
       };
       this.authService.loginUser(user).subscribe((data) => {
         console.info(data);
-        // localStorage.setItem('accessToken', data.accessToken);
-        this.router.navigate(['dashboard']);
+        this.sessionService.setUserLoggedIn(data);
+
+        this.router.navigate(['structure/dashboard']);
       });
     }
   }
