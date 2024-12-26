@@ -6,5 +6,9 @@ export const appRoutes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.routes').then((r) => r.authRoutes),
   },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard.component'),
+  },
   { path: '**', redirectTo: 'auth', pathMatch: 'full' },
 ];

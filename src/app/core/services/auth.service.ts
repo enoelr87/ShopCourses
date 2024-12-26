@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
+import { delay, map, Observable, tap } from 'rxjs';
 import { buildApiURL } from '../utils/url.util';
 import {
   LoginUserDto,
@@ -26,20 +26,15 @@ export class AuthService {
     return response.pipe(map((data: any) => data));
   }
 
-  login(loginUser: LoginUserDto): Observable<UserAuthenticatedDto> {
+  loginUser(loginUser: LoginUserDto): Observable<UserAuthenticatedDto> {
     const response = this.httpClient.post<UserAuthenticatedDto>(
       `${this.apiPath}/login`,
       loginUser
     );
     return this.mapResponse(response);
-    /* .pipe(
-        tap((tokens: any) => {
-          this.setTokens(tokens.accessToken, tokens.refreshToken);
-        })
-      );*/
   }
 
-  register(registerUser: RegisterUserDto): Observable<any> {
+  registerUser(registerUser: RegisterUserDto): Observable<any> {
     const response = this.httpClient.post<any>(
       `${this.apiPath}/register`,
       registerUser
@@ -47,7 +42,7 @@ export class AuthService {
     return this.mapResponse(response);
   }
 
-  refresh(): Observable<any> {
+  refreshTokenUser(): Observable<any> {
     return this.httpClient
       .post<any>('/api/auth/refresh', { token: this.refreshToken })
       .pipe(

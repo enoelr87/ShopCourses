@@ -14,7 +14,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { provideServiceWorker } from '@angular/service-worker';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import { loadingInterceptor } from './core/interceptors/loading.interceptor';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,7 +28,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([loadingInterceptor, authInterceptor]),
+      withFetch()
+    ),
     providePrimeNG({
       theme: {
         preset: Aura,

@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -33,7 +33,8 @@ import { LoginUserDto } from '../../core/models/user.model';
   styleUrl: './login.component.scss',
 })
 export default class LoginComponent implements OnInit {
-  authService = inject(AuthService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   apiKey: string = environment.apiKeyCaptchaV2;
   loginForm!: FormGroup;
@@ -54,13 +55,12 @@ export default class LoginComponent implements OnInit {
 
   loginUser(): void {
     if (this.loginForm.valid) {
-      console.info(this.loginForm.value);
       const user: LoginUserDto = {
         username: this.loginForm.value.username,
         password: this.loginForm.value.password,
       };
-      this.authService.login(user).subscribe((data) => {
-        console.info(data);
+      this.authService.loginUser(user).subscribe((data) => {
+        // this.router.navigate(['dashboard']);
       });
     }
   }
