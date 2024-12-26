@@ -60,7 +60,9 @@ export default class LoginComponent implements OnInit {
         password: this.loginForm.value.password,
       };
       this.authService.loginUser(user).subscribe((data) => {
-        // this.router.navigate(['dashboard']);
+        console.info(data);
+        // localStorage.setItem('accessToken', data.accessToken);
+        this.router.navigate(['dashboard']);
       });
     }
   }
