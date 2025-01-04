@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { SpinnerService } from '../core/services/spinner.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-spinner',
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './spinner.component.html',
   styleUrl: './spinner.component.scss',
 })

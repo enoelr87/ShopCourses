@@ -44,7 +44,9 @@ export class AuthService {
 
   refreshTokenUser(): Observable<any> {
     return this.httpClient
-      .post<any>('/api/auth/refresh', { token: this.refreshToken })
+      .post<UserAuthenticatedDto>(`${this.apiPath}/refresh-token`, {
+        refreshToken: this.refreshToken,
+      })
       .pipe(
         tap((tokens: any) => {
           this.authToken = tokens.accessToken;

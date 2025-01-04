@@ -2,6 +2,7 @@ import {
   ApplicationConfig,
   provideZoneChangeDetection,
   isDevMode,
+  importProvidersFrom,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
@@ -21,6 +22,8 @@ import {
 } from '@angular/common/http';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { TranslateModule } from '@ngx-translate/core';
+import { provideTranslation } from './core/utils/app.translation.util';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,6 +35,7 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([loadingInterceptor, authInterceptor]),
       withFetch()
     ),
+    importProvidersFrom([TranslateModule.forRoot(provideTranslation())]),
     providePrimeNG({
       theme: {
         preset: Aura,

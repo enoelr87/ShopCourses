@@ -14,7 +14,7 @@
 				</p-floatlabel>
 			</div>
 			<div class="flex align-items-center justify-content-end mb-6">
-				<a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer" [routerLink]="['/auth/forgot-password']">Esqueci minha senha</a>
+				<a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer" [routerLink]="['/forgot-password']">Esqueci minha senha</a>
 			</div>
 			<div class="login-captcha flex justify-content-center align-items-center mb-4">
 				<re-captcha (resolved)="onCaptchaResolved($event)" siteKey="{{apiKey}}"></re-captcha>
@@ -24,7 +24,7 @@
 			</div>
 			<div class="flex align-items-center justify-content-center mt-3 flex-column gap-2">
 				<span class="text-600 text-gray-500 font-medium line-height-3">Não tem uma conta?</span>
-				<a class="text-900 font-medium no-underline text-blue-500 cursor-pointer" [routerLink]="['/auth/register']" >Crie uma agora mesmo!</a>
+				<a class="text-900 font-medium no-underline text-blue-500 cursor-pointer" [routerLink]="['/register']" >Crie uma agora mesmo!</a>
 			</div>
 		</form>
 	</div>

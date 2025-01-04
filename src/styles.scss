@@ -21,7 +21,6 @@ $owner-theme-color: var(--owner-theme-color);
 	--primary-theme-color-darker: color-mix(in srgb, var(--primary-theme-color), black);
 	--owner-theme-color: 59 130 246;
 	--color-primary: 59 130 246;
-	--color-bertha: 46 57 60;
 	--tw-bg-opacity: 1;
 	--tw-translate-x: 0;
 	--tw-translate-y: 0;
@@ -33,6 +32,8 @@ $owner-theme-color: var(--owner-theme-color);
 	--fontSize: 12px;
 	--borderRadius: 4px;
 	--transitionDuration: .2s;
+	--text-color: #333;
+	--font-family: Roboto, sans-serif;
 }
 
 * {

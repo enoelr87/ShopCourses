@@ -64,8 +64,7 @@ export default class LoginComponent implements OnInit {
       this.authService.loginUser(user).subscribe((data) => {
         console.info(data);
         this.sessionService.setUserLoggedIn(data);
-
-        this.router.navigate(['structure/dashboard']);
+        this.router.navigate(['dashboard']);
       });
     }
   }
